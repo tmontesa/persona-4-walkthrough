@@ -1,12 +1,10 @@
 class P4Date {
-    day;
-    month;
+    date;
     dayOfWeek;
     weather;
 
-    constructor(day, month, dayOfWeek, weather) {
-        this.day = day;
-        this.month = month;
+    constructor(date, dayOfWeek, weather) {
+        this.date = date;
         this.dayOfWeek = dayOfWeek;
         this.weather = weather;
         return this;
@@ -15,13 +13,13 @@ class P4Date {
 
 class P4Day {
     date;
-    personaNeeded;
-    dayEvents;
-    daySLinkResponses;
-    nightEvents;
-    nightSLinkResponses;
-    keyResponses;
-    notes;
+    personaNeeded = "";
+    dayEvents = "";
+    daySLinkResponses = "";
+    nightEvents = "";
+    nightSLinkResponses = "";
+    keyResponses = "";
+    notes = "";
 
     constructor(date) {
         this.date = date;
@@ -41,8 +39,7 @@ while (line < p4.length) {
         days.push(day);
         
         day = new P4Day(new P4Date(
-            substringBetweenChars(p4[line], "/", " "),
-            substringBetweenChars(p4[line], "[  ] --- ", "/"),
+            substringBetweenChars(p4[line], "[  ] --- ", " ("),
             substringBetweenChars(p4[line], "(", ")"),
             substringBetweenChars(p4[line], ") - ", " ")
         ));
@@ -60,7 +57,7 @@ while (line < p4.length) {
 
         day.dayEvents = "";
         while (!p4[line] == "") {
-            day.dayEvents = day.dayEvents.concat(p4[line] + "\n");
+            day.dayEvents = day.dayEvents.concat(p4[line] + "<br />");
             line++;
         }
     }
@@ -70,7 +67,7 @@ while (line < p4.length) {
 
         day.daySLinkResponses = "";
         while (!p4[line] == "") {
-            day.daySLinkResponses = day.daySLinkResponses.concat(p4[line] + "\n");
+            day.daySLinkResponses = day.daySLinkResponses.concat(p4[line] + "<br />");
             line++;
         }
     }
@@ -80,7 +77,7 @@ while (line < p4.length) {
 
         day.nightEvents = "";
         while (!p4[line] == "") {
-            day.nightEvents = day.nightEvents.concat(p4[line] + "\n");
+            day.nightEvents = day.nightEvents.concat(p4[line] + "<br />");
             line++;
         }
     }
@@ -90,7 +87,7 @@ while (line < p4.length) {
 
         day.nightSLinkResponses = "";
         while (!p4[line] == "") {
-            day.nightSLinkResponses = day.nightSLinkResponses.concat(p4[line] + "\n");
+            day.nightSLinkResponses = day.nightSLinkResponses.concat(p4[line] + "<br />");
             line++;
         }
     }
@@ -100,7 +97,7 @@ while (line < p4.length) {
 
         day.keyResponses = "";
         while (!p4[line] == "") {
-            day.keyResponses = day.keyResponses.concat(p4[line] + "\n");
+            day.keyResponses = day.keyResponses.concat(p4[line] + "<br />");
             line++;
         }
     }
@@ -136,7 +133,7 @@ day_index = 1;
 day = days[day_index];
 function generateInfo(day) {
     day = days[day_index];
-    elem.date.innerHTML = `${day.date.month}/${day.date.day} (${day.date.dayOfWeek}) - ${day.date.weather}`;
+    elem.date.innerHTML = `${day.date.date} (${day.date.dayOfWeek})`;
     elem.personaNeeded.innerHTML = `${day.personaNeeded}`;
     elem.dayEvents.innerHTML = `${day.dayEvents}`;
     elem.daySLinkResponses.innerHTML = `${day.daySLinkResponses}`;
