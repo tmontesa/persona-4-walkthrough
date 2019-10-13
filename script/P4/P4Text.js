@@ -1,4 +1,4 @@
-var p4 = `
+const P4Text = `
 [  ] --- 4/11 (Mon) - Cloudy/Rain ---------------------------------------------
 
 <> Day time events:
