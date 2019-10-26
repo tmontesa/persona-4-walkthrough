@@ -127,12 +127,15 @@ elem = new class {
     nightSLinkResponses = document.getElementById("nightSLinkResponses");
     keyResponses = document.getElementById("keyResponses");
     notes = document.getElementById("notes");
+    day = document.getElementById("day");
 }
 
 day_index = 1;
 day = days[day_index];
-function generateInfo(day) {
+function generateInfo(dayGiven) {
+    day_index = dayGiven;
     day = days[day_index];
+    elem.day.value = parseInt(dayGiven);
     elem.date.innerHTML = `${day.date.date} (${day.date.dayOfWeek})`;
     elem.personaNeeded.innerHTML = `${day.personaNeeded}`;
     elem.dayEvents.innerHTML = `${day.dayEvents}`;
@@ -141,4 +144,10 @@ function generateInfo(day) {
     elem.nightSLinkResponses.innerHTML = `${day.nightSLinkResponses}`;
     elem.keyResponses.innerHTML = `${day.keyResponses}`;
     elem.notes.innerHTML = `${day.notes}`;
+
+    localStorage['dayIndexStore'] = day_index;
+}
+
+function getValueOfDay() {
+    return parseInt(elem.day.value);
 }

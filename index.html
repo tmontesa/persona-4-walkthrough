@@ -59,8 +59,10 @@
 </head>
 
 <body>
-    <button onclick="generateInfo(day_index--)">Previous</button>
-    <button onclick="generateInfo(day_index++)" style="float:right">Next</button>
+    <button onclick="generateInfo(day_index - 1)">Previous</button>
+    <button onclick="generateInfo(day_index + 1)">Next</button>
+    
+    
 
     <div id="container">
         <h1 id="date"></h1>
@@ -96,10 +98,17 @@
         <br />
     </div>
 
-    
+    <br /><br />
+    <input id="day" type="number" value="1" min="0" max="232" onchange="generateInfo(getValueOfDay())">
 </body>
 
 <script src="utils.js"></script>
 <script src="p4.js"></script>
 <script src="main.js"></script>
+<script>
+    if (localStorage['dayIndexStore']) {
+        generateInfo(parseInt(localStorage['dayIndexStore']));
+        console.log("Cached from day " + parseInt(localStorage['dayIndexStore']));
+    }
+</script>
 
